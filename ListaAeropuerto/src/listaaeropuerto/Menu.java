@@ -66,11 +66,9 @@ public class Menu {
     public void listaEsperaPasajeros() {
         System.out.println("  Registro en lista de espera ");
         System.out.print("Número de Cédula: ");
-        pa.setCedula(tec.Tec().next());
-        System.out.print("Apellidos: ");
-        pa.setApellidos(tec.Tec().nextLine());
-        System.out.print("Nombres: ");
-        pa.setNombres(tec.Tec().nextLine());
+        pa.setCedula(control.ControlCedula());
+        pa.setApellidos(control.controlDosPalbras("apellidos:"));
+        pa.setNombres(control.controlDosPalbras("nombres:"));
         System.out.print("Dirección: ");
         pa.setDireccion(tec.Tec().nextLine());
         System.out.print("Teléfono: ");
