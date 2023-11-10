@@ -5,7 +5,7 @@ public class Menu {
     Controles control = new Controles();
     Almacen almacen = new Almacen();
     Pasajero pa = new Pasajero();
-
+    Vuelo vuelo= new Vuelo();
     public void menu() {
         int op;
         do {
@@ -30,7 +30,6 @@ public class Menu {
                     } while (op != 3);
                     control.espacios();
                     break;
-
                 case 2:
                     System.out.println("HOLAAAAAAAAA");
                     break;
@@ -84,5 +83,9 @@ public class Menu {
 
     public void vuelos() {
         System.out.println(" Lista de Vuelos en Espera");
+        System.out.print("Destino:"); vuelo.setDestino(tec.Tec().next());
+        System.out.print("Fecha de salida:");vuelo.setFecha(tec.Tec().next());
+        System.out.print("Hora de salida: ");vuelo.setHoraSalida(tec.Tec().next());
+        System.out.print("Cantidad de espacios no reservados: ");vuelo.setCantidadAsientosNoRservados(tec.Tec().nextInt());
     }
 }
