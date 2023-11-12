@@ -11,13 +11,13 @@ public class Controles {
         }
     }
 
-    public String ControlCedula() {
+    public String ControlCedula(String mensaje) {
         String cedula, patron;
         patron = "^[0-9]{10}$";
         boolean aux = false;
 
         do {
-
+            System.out.print(mensaje);
             cedula = tec.Tec().next();
 
             if (cedula.matches(patron)) {
@@ -78,7 +78,7 @@ public class Controles {
     }
 
     public String controlDosPalbras(String mensaje) {
-        boolean control ;
+        boolean control;
         String patron = "^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]+\\s[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]+$";
         String NombresApellidos;
         do {
@@ -90,13 +90,39 @@ public class Controles {
                 String[] palabras = NombresApellidos.split(" ");
                 if (palabras.length != 2) {
                     control = false;
-                }else{
-                    control=true;
+                } else {
+                    control = true;
                 }
             }
-        } while (control==false);
+        } while (control == false);
 
         // comprobamos si tiene dos palabras
         return NombresApellidos;
+    }
+
+    public String Palabras(String opcion) {
+        String patron, palabra;
+        patron = "^[a-zA-Z\\s]+$";
+        do {
+            System.out.print(opcion);
+            palabra = tec.Tec().next();
+            if (!(palabra.matches(patron))) {
+                System.out.println("Ingreso solo letras.");
+            }
+        } while (!(palabra.matches(patron)));
+        return palabra;
+    }
+
+    public int ControlNumrs(String mensaje) {
+        String patron, num;
+        patron = "^[0-9]+$";
+        do {
+            System.out.print(mensaje);
+            num = tec.Tec().next();
+            if (!num.matches(patron) || num.length() != 10) {
+                System.out.println("Por favor, ingrese solamente 10 números.");
+            }
+        } while (!num.matches(patron) || num.length() != 10);
+        return Integer.parseInt(num);
     }
 }

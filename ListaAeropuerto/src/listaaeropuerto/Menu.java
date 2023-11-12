@@ -65,16 +65,11 @@ public class Menu {
 
     public void listaEsperaPasajeros() {
         System.out.println("  Registro en lista de espera ");
-        System.out.print("Número de Cédula: ");
-        pa.setCedula(control.ControlCedula());
+        pa.setCedula(control.ControlCedula("Número de Cédula: "));
         pa.setApellidos(control.controlDosPalbras("apellidos:"));
         pa.setNombres(control.controlDosPalbras("nombres:"));
-        System.out.print("Dirección: ");
-        pa.setDireccion(tec.Tec().nextLine());
-        System.out.print("Teléfono: ");
-        pa.setTelefono(tec.Tec().nextInt());
-        System.out.print("Destino al que viaja: ");
-        pa.setDestinoViaja(tec.Tec().next());
+        pa.setTelefono(control.ControlNumrs("Teléfono:"));
+        pa.setDestinoViaja(control.Palabras("Destino al que viaja: "));
         almacen.agregarPasajeros(pa);
         System.out.println("\n*****Registro Exitoso*****\n");
     }
@@ -86,4 +81,5 @@ public class Menu {
         System.out.print("Hora de salida: ");vuelo.setHoraSalida(tec.Tec().next());
         System.out.print("Cantidad de espacios no reservados: ");vuelo.setCantidadAsientosNoRservados(tec.Tec().nextInt());
     }
+
 }
