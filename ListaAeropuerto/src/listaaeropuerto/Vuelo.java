@@ -47,5 +47,5 @@ public Vuelo(){
     public void setHoraSalida(String horaSalida) {
         this.horaSalida = horaSalida;
     }
-   
+    
 }

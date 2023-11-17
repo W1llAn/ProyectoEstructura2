@@ -32,12 +32,21 @@ public class Menu {
                     control.espacios();
                     break;
                 case 2:
+                 do{
+                    subMenuListaEspera();
+                    System.out.println("Desea asignar otro pasajero al vuelo ");
+                    char aux=tec.Tec().next().charAt(0);
+
+                 }while (aux=='s') ;
+
+                break;
+                case 3:
                     System.out.println("Reportes");
                     System.out.println("1) Lista de pasajeros por vuelo\n2) Cantidad de personas por destino\n 3) Estadisticas de cantidad de personas por destino");
                     System.out.print("Opcion: ");
                      op = tec.Tec().nextInt();
                     break;
-                case 3:
+                case 4:
                 control.espacios();
                     System.out.println("Gracias por utilizar nuestro sistema");
                     System.out.println("\"QUE TENGA UN EXCELENTE DIA\"\n\"Saludos\"");
@@ -58,7 +67,7 @@ public class Menu {
 
     public void subMenu() {
         System.out.println("   REGISTRO  ");
-        System.out.println("1)Pasajeros\n2)Estadisticas\n3)Salir");
+    System.out.println("1)Pasajeros\n2)Lista de espera\n3)Estadisticas\n3)Salir");
         System.out.print("Opción:");
     }
 
@@ -101,6 +110,19 @@ public class Menu {
             break;
         }
     }
-    
+    public void subMenuListaEspera(){
+
+        System.out.println("******************LISTA DE ESPERA***********");
+        System.out.println("Lista pasajeros");
+        ImprimirListaEspera();
+        System.out.println("Lista de vuelos Disponibles");
+        almacen.imprimirVuelos();
+        System.out.println("-----------------------------------");
+
+    }
+    public void ImprimirListaEspera(){
+        for(i=0; i<almacen.getE().size();i++);
+        System.out.println("Nombres:"+almacen.getE().get(i).getNombres());
+    }
 
 }

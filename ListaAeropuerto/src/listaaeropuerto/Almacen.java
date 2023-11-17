@@ -26,5 +26,10 @@ public class Almacen {
      public void agregarVuelo(Vuelo vuelos) {
         this.getVuelos().add(vuelos);
     }
-    
+    public void imprimirVuelos(){
+        for (Vuelo vuelos : this.getVuelos()) {
+            System.out.println("Destino de vuelo: "+ vuelos.getDestino());
+            System.out.println("Hora de salida"+vuelos.getHoraSalida());
+        }
+    }
 }
