@@ -6,6 +6,7 @@ public class Vuelo {
     public String horaSalida;
     private int cantidadAsientosNoReservados;
     Asientos[] totalAsientos = new Asientos[5];
+  
     int contadorAsientos = 0;
 public Vuelo(){
 
@@ -46,5 +47,5 @@ public Vuelo(){
     public void setHoraSalida(String horaSalida) {
         this.horaSalida = horaSalida;
     }
-
+   
 }

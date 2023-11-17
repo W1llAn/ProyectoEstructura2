@@ -6,6 +6,7 @@ public class Menu {
     Almacen almacen = new Almacen();
     Pasajero pa = new Pasajero();
     Vuelo vuelo= new Vuelo();
+    
     public void menu() {
         int op;
         do {
@@ -71,6 +72,7 @@ public class Menu {
         pa.setTelefono(control.ControlNumrs("Teléfono:"));
         pa.setDestinoViaja(control.Palabras("Destino al que viaja: "));
         almacen.agregarPasajeros(pa);
+        almacen.agregarPasajerosPerm(pa);
         System.out.println("\n*****Registro Exitoso*****\n");
     }
 
@@ -80,6 +82,9 @@ public class Menu {
         System.out.print("Fecha de salida:");vuelo.setFecha(tec.Tec().next());
         System.out.print("Hora de salida: ");vuelo.setHoraSalida(tec.Tec().next());
         System.out.print("Cantidad de espacios no reservados: ");vuelo.setCantidadAsientosNoRservados(tec.Tec().nextInt());
+        almacen.agregarVuelo(vuelo);
     }
+
+    
 
 }
