@@ -87,13 +87,13 @@ public class Menu {
         Reportes reportes = new Reportes();
         switch (op) {
             case 1:
-                reportes.listaPasajerosVuelo(almacen.getListaPasajerosPerm(), almacen.getVuelos());
+                reportes.listaPasajerosVuelo(almacen.getE(), almacen.getVuelos());
             break;
             case 2:
-                
+                reportes.cantPersonasDestinos(almacen.getListaPasajerosPerm(), almacen.getVuelos());
             break;
             case 3:
-                
+                reportes.cantPersonasDestinosListaEspera(almacen.getVuelos(), almacen.getListaPasajerosPerm());
             break;
         
             default:
