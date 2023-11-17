@@ -32,10 +32,11 @@ public class Menu {
                     control.espacios();
                     break;
                 case 2:
+                char aux;
                  do{
                     subMenuListaEspera();
                     System.out.println("Desea asignar otro pasajero al vuelo ");
-                    char aux=tec.Tec().next().charAt(0);
+                    aux=tec.Tec().next().charAt(0);
 
                  }while (aux=='s') ;
 
@@ -45,6 +46,7 @@ public class Menu {
                     System.out.println("1) Lista de pasajeros por vuelo\n2) Cantidad de personas por destino\n 3) Estadisticas de cantidad de personas por destino");
                     System.out.print("Opcion: ");
                      op = tec.Tec().nextInt();
+                     this.OpcionesRegistros(op);
                     break;
                 case 4:
                 control.espacios();
@@ -121,7 +123,7 @@ public class Menu {
 
     }
     public void ImprimirListaEspera(){
-        for(i=0; i<almacen.getE().size();i++);
+        for(int i=0; i<almacen.getE().size();i++);
         System.out.println("Nombres:"+almacen.getE().get(i).getNombres());
     }
 
