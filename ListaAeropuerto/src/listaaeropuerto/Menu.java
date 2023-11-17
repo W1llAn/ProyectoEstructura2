@@ -35,11 +35,6 @@ public class Menu {
                     System.out.println("HOLAAAAAAAAA");
                     break;
                 case 3:
-            for(int i=0; i<almacen.getE().size(); i++){
-                System.out.println(almacen.getE().get(i).getNombres());
-            }
-                    break;
-                case 4:
                 control.espacios();
                     System.out.println("Gracias por utilizar nuestro sistema");
                     System.out.println("\"QUE TENGA UN EXCELENTE DIA\"\n\"Saludos\"");
@@ -48,13 +43,13 @@ public class Menu {
                 default:
                     System.out.println("Opción Incorrecta");
             }
-        } while (op != 4);
+        } while (op != 3);
     }
 
     public void Opciones() {
         System.out.println("Aeropuerto Mariscal Sucre - ECUADOR ");
         System.out.println("     L I S T A  D E  E S P E R A");
-        System.out.println("1)Registro\n2)Lista de espera\n3)Estadisticas\n4)Salir");
+        System.out.println("1)Registro\n2))Estadisticas\n3)Salir");
         System.out.print("Opción:");
     }
 
@@ -84,7 +79,7 @@ public class Menu {
         System.out.print("Cantidad de espacios no reservados: ");vuelo.setCantidadAsientosNoRservados(tec.Tec().nextInt());
         almacen.agregarVuelo(vuelo);
     }
-
+   
     
 
 }

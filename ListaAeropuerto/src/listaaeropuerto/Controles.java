@@ -1,7 +1,5 @@
 package listaaeropuerto;
 
-import javax.swing.JOptionPane;
-
 public class Controles {
     Teclado tec = new Teclado();
 
