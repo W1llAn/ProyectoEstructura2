@@ -32,12 +32,12 @@ public class Menu {
                     control.espacios();
                     break;
                 case 2:
-                    System.out.println("HOLAAAAAAAAA");
+                    System.out.println("Reportes");
+                    System.out.println("1) Lista de pasajeros por vuelo\n2) Cantidad de personas por destino\n 3) Estadisticas de cantidad de personas por destino");
+                    System.out.print("Opcion: ");
+                     op = tec.Tec().nextInt();
                     break;
                 case 3:
-                    System.out.println("");
-                    break;
-                case 4:
                 control.espacios();
                     System.out.println("Gracias por utilizar nuestro sistema");
                     System.out.println("\"QUE TENGA UN EXCELENTE DIA\"\n\"Saludos\"");
@@ -52,13 +52,13 @@ public class Menu {
     public void Opciones() {
         System.out.println("Aeropuerto Mariscal Sucre - ECUADOR ");
         System.out.println("     L I S T A  D E  E S P E R A");
-        System.out.println("1)Registro\n2)Lista de espera\n3)Estadisticas\n4)Salir");
+        System.out.println("1)Registro\n2)Estadisticas\n3)Salir");
         System.out.print("Opción:");
     }
 
     public void subMenu() {
         System.out.println("   REGISTRO  ");
-        System.out.println("1)Pasajeros\n2)Vuelos\n3)Salir");
+        System.out.println("1)Pasajeros\n2)Estadisticas\n3)Salir");
         System.out.print("Opción:");
     }
 
@@ -82,7 +82,25 @@ public class Menu {
         System.out.print("Cantidad de espacios no reservados: ");vuelo.setCantidadAsientosNoRservados(tec.Tec().nextInt());
         almacen.agregarVuelo(vuelo);
     }
-
+    
+    public void OpcionesRegistros(int op){
+        Reportes reportes = new Reportes();
+        switch (op) {
+            case 1:
+                reportes.listaPasajerosVuelo(almacen.getListaPasajerosPerm(), almacen.getVuelos());
+            break;
+            case 2:
+                
+            break;
+            case 3:
+                
+            break;
+        
+            default:
+            System.out.println("Opcion inválida");
+            break;
+        }
+    }
     
 
 }
