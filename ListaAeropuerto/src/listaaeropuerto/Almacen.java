@@ -31,6 +31,7 @@ public class Almacen {
         for (Vuelo vuelos : this.getListaVuelos()) {
             System.out.println("-------------------------------------");
             System.out.println("Destino de vuelo: "+ vuelos.getDestino());
+            System.out.println("Fecha de salida: "+vuelos.getFecha());
             System.out.println("Hora de salida: "+vuelos.getHoraSalida());
             System.out.println("Espacios disponibles: "+vuelos.getCantidadAsientosNoReservados());
             System.out.println("Estado: "+vuelos.getEstado());

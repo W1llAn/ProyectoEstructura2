@@ -1,5 +1,7 @@
 package listaaeropuerto;
 
+import java.util.Date;
+
 public class Menu {
     public Teclado tec = new Teclado();
     Controles control = new Controles();
@@ -89,7 +91,7 @@ public class Menu {
     public void registroListaEsperaPasajeros() {
         System.out.println("  Registro en lista de espera ");
         Pasajero pa = new Pasajero();
-        pa.setCedula(control.ControlCedula("Número de Cédula: "));
+        pa.setCedula(control.ControlCedula("Número de Cédula: ",almacen));
         pa.setApellidos(control.controlDosPalbras("apellidos:"));
         pa.setNombres(control.controlDosPalbras("nombres:"));
         pa.setTelefono(control.ControlNumrs("Teléfono:"));
@@ -100,18 +102,14 @@ public class Menu {
     }
 
     public void crearVuelos() {
-        System.out.println("Registro de vuelos");
-        System.out.print("Nombre de la compañia: ");
-        String compania = tec.Tec().next();
-        System.out.print("Destino: ");
-        String destino = tec.Tec().next();
-        System.out.print("Fecha de salida: ");
-        String fecha = tec.Tec().next();
-        System.out.print("Hora de salida: ");
-        String horaSalida = tec.Tec().next();
-        System.out.print("Cantidad de espacios no reservados: ");
-        int cantidadAsientosNoReservados = tec.Tec().nextInt();
-        Vuelo vuelo = new Vuelo(compania,destino, fecha, horaSalida, cantidadAsientosNoReservados,"Disponible");
+        System.out.println("*************Registro de vuelos*****************");
+        String compania = control.Palabras("Nombre de la compañia: ");
+        String destino = control.Palabras("Destino: ");
+        Date fecha = control.ingresoFechaVuelo();
+        String horaSalida = control.pedirHoraYMinutos();
+        int cantidadAsientosNoReservados = control.contolNumerosAsientosDisponibles("Cantidad de espacios no reservados: ");
+        System.out.println("*****Registro de vuelo exitoso*****");
+        Vuelo vuelo = new Vuelo(compania.toUpperCase(),destino.toUpperCase(), fecha, horaSalida, cantidadAsientosNoReservados,"Disponible");
         almacen.agregarAListaVuelo(vuelo);
         gestionVuelos = vuelo; 
     }
@@ -142,6 +140,7 @@ public class Menu {
         almacen.imprimirListaEspera();
         System.out.println("----LISTA DE VUELOS DISPONIBLES----");
         almacen.imprimirVuelos();
+        System.out.println("\n");
         System.out.println("1)Atender Lista de espera\n2) Dar Salida al avion\n3) Salir");
         
 

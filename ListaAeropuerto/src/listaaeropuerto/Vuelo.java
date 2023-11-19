@@ -1,10 +1,11 @@
 package listaaeropuerto;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Vuelo {
     private String nombreEmpresaAvion;
     private String destino;
-    private String fecha;
+    private Date fecha;
     public String horaSalida;
     private int cantidadAsientosNoReservados;
     private String estado;
@@ -14,7 +15,7 @@ public class Vuelo {
 public Vuelo(){
 
 }
-    public Vuelo(String nombreEmpresaAvion,String destino, String fecha, String horaSalida,int cantidadAsientosNoReservados, String estado) {
+    public Vuelo(String nombreEmpresaAvion,String destino, Date fecha, String horaSalida,int cantidadAsientosNoReservados, String estado) {
         this.nombreEmpresaAvion = nombreEmpresaAvion;
         this.destino = destino;
         this.fecha = fecha;
@@ -50,11 +51,11 @@ public Vuelo(){
         this.destino = destino;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return this.fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
