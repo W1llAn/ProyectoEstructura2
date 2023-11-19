@@ -68,4 +68,5 @@ public class Pasajero {
     public void setDestinoViaja(String destinoViaja) {
         this.destinoViaja = destinoViaja;
     }
+    
 }
