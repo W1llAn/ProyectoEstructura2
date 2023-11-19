@@ -23,8 +23,8 @@ public class Reportes {
                 if (pasajero.getDestinoViaja().equals(vuelo.getDestino())) {
                  cantPasajeros++;   
                 }
-                System.out.println("Destino "+vuelo.getDestino()+" : "+cantPasajeros);  
             }
+            System.out.println("Destino "+vuelo.getDestino()+" : "+cantPasajeros);  
 
         }
     }
@@ -32,15 +32,14 @@ public class Reportes {
         System.out.println("Lista actual de espera:");
         for (Vuelo vuelo : vuelos) {
             int cantPasajeros=0;
+            double porcentaje=0;
             for (Pasajero pasajero : pasajeros) {
                 if (pasajero.getDestinoViaja().equals(vuelo.getDestino())) {
                  cantPasajeros++;   
-                }   
-                double porcentaje=0;
-                porcentaje = (cantPasajeros*100)/pasajeros.size();
-                System.out.println("Destino "+vuelo.getDestino()+" : "+porcentaje+"%");  
+                }      
+                porcentaje = (cantPasajeros*100)/pasajeros.size(); 
             }
-
+            System.out.println("Destino "+vuelo.getDestino()+" : "+porcentaje+"%"); 
         }
     }
 }
