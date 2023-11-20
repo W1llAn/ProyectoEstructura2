@@ -5,19 +5,18 @@ import java.util.Date;
 public class Menu {
     public Teclado tec = new Teclado();
     Controles control = new Controles();
-    Almacen almacen = new Almacen();
+    GestionDeListas gestionListas = new GestionDeListas();
     Vuelo gestionVuelos=new Vuelo();
     public void menu() {
         int op;
         do {
             Opciones();
-            op = tec.Tec().nextInt();
-
+            op = control.controlarValorOpcion();
             switch (op) {
                 case 1:
                     do {
                         subMenuRegistros();
-                        op = tec.Tec().nextInt();
+                        op = control.controlarValorOpcion();
                         switch (op) {
                             case 1:
                                 registroListaEsperaPasajeros();
@@ -32,35 +31,41 @@ public class Menu {
                     control.espacios();
                     break;
                 case 2:
-                    do {
+                int opcion2;
+                    do { 
                         subMenuListaEspera();
-                        op = tec.Tec().nextInt();
-                        switch (op) {
+                        opcion2 = control.controlarValorOpcion();
+                        switch (opcion2) {
                             case 1:
                                 System.out.println("-----Asignacion de pasajeros----");
-                                gestionVuelos.atenderListaEspera(almacen.getlistaEspera(), almacen.getListaVuelos());                
+                                if(gestionVuelos.atenderListaEspera(gestionListas.getlistaEspera(), gestionListas.getListaVuelos()))
+                                    System.out.println("Lista de espera Atendida con exito!");        
                                 break;
                             case 2:
                                 System.out.println("----Estado de aviones----");
-                                almacen.imprimirNombresYEstadosAvion();
-                                String nombreEmpresa=control.Palabras("Ingrese el nombre del la empresa para dar salida al avion; ");
-                                if (gestionVuelos.estadoDelAvion(nombreEmpresa, almacen.getListaVuelos())) {
-                                    System.out.println("Estado del vuelo cambiado");
+                                gestionListas.imprimirNombresYEstadosAvion();
+                                String nombreEmpresa=control.Palabras("Ingrese el nombre del la empresa para dar salida al avion ");
+                                if (gestionVuelos.estadoDelAvion(nombreEmpresa, gestionListas.getListaVuelos())) {
+                                    System.out.println("Estado del avion cambiado");
                                 }else{
-                                    System.out.println("No se cambio el estado del vuelo por que ya despego");
+                                    System.out.println("No se cambio el estado del avion");
                                 }
+                                break;
+                                case 3:
+                                System.out.println("--------DETALLE LISTA DE PASAJEROS EN VUELOS DESPEGADOS--------");
+                                if(!(gestionVuelos.DetalleVueloDespegado(gestionListas.getListaVuelos())))
+                                    System.out.println("Nada que mostrar en el sistema");
                                 break;
                             default:
                                 break;
                         }
-                    } while (op != 3);
-
-                break;
+                    } while (opcion2 != 4);
+                    break;
                 case 3:
                     System.out.println("Reportes");
                     System.out.println("1) Lista de pasajeros por vuelo\n2) Cantidad de personas por destino\n 3) Estadisticas de cantidad de personas por destino");
                     System.out.print("Opcion: ");
-                     op = tec.Tec().nextInt();
+                     op = control.controlarValorOpcion();
                      this.OpcionesReportes(op);
                     break;
                 case 4:
@@ -79,38 +84,39 @@ public class Menu {
         System.out.println("Aeropuerto Mariscal Sucre - ECUADOR ");
         System.out.println("     L I S T A  D E  E S P E R A    ");
         System.out.println("1)Registro\n2)Gestion Vuelos\n3)Estadisticas\n4)Salir");
-        System.out.print("Opción:");
+       
     }
 
     public void subMenuRegistros() {
         System.out.println("   REGISTRO  ");
     System.out.println("1)Pasajeros\n2)Crear Vuelo\n3)Salir");
-        System.out.print("Opción:");
+    
     }
 
     public void registroListaEsperaPasajeros() {
         System.out.println("  Registro en lista de espera ");
         Pasajero pa = new Pasajero();
-        pa.setCedula(control.ControlCedula("Número de Cédula: ",almacen));
-        pa.setApellidos(control.controlDosPalbras("apellidos:"));
-        pa.setNombres(control.controlDosPalbras("nombres:"));
+        pa.setCedula(control.ControlCedula("Número de Cédula: ",gestionListas));
+        pa.setApellidos(control.controlDosPalabras("Apellidos:"));
+        pa.setNombres(control.controlDosPalabras("Nombres:"));
         pa.setTelefono(control.ControlNumrs("Teléfono:"));
         pa.setDestinoViaja(control.Palabras("Destino al que viaja: "));
-        almacen.agregarPasajerosLista(pa);
-        almacen.agregarPasajerosPerm(pa);
+        pa.setEstado("Sin Asignar");
+        gestionListas.agregarPasajerosLista(pa);
+        gestionListas.agregarPasajerosPerm(pa);
         System.out.println("\n*****Registro Exitoso*****\n");
     }
 
     public void crearVuelos() {
         System.out.println("*************Registro de vuelos*****************");
-        String compania = control.Palabras("Nombre de la compañia: ");
+        String compania = control.PalabrasYVverificarAvion("Nombre de la compañia: ",gestionListas);
         String destino = control.Palabras("Destino: ");
         Date fecha = control.ingresoFechaVuelo();
         String horaSalida = control.pedirHoraYMinutos();
         int cantidadAsientosNoReservados = control.contolNumerosAsientosDisponibles("Cantidad de espacios no reservados: ");
         System.out.println("*****Registro de vuelo exitoso*****");
         Vuelo vuelo = new Vuelo(compania.toUpperCase(),destino.toUpperCase(), fecha, horaSalida, cantidadAsientosNoReservados,"Disponible");
-        almacen.agregarAListaVuelo(vuelo);
+        gestionListas.agregarAListaVuelo(vuelo);
         gestionVuelos = vuelo; 
     }
     
@@ -120,13 +126,13 @@ public class Menu {
         Reportes reportes = new Reportes();
         switch (op) {
             case 1:
-                reportes.listaPasajerosVuelo(almacen.getlistaEspera(), almacen.getListaVuelos());
+                reportes.listaPasajerosVuelo(gestionListas.getlistaEspera(), gestionListas.getListaVuelos());
             break;
             case 2:
-                reportes.cantPersonasDestinos(almacen.getListaPasajerosPerm(), almacen.getListaVuelos());
+                reportes.cantPersonasDestinos(gestionListas.getListaPasajerosPerm(), gestionListas.getListaVuelos());
             break;
             case 3:
-                reportes.cantPersonasDestinosListaEspera(almacen.getListaVuelos(), almacen.getListaPasajerosPerm());
+                reportes.cantPersonasDestinosListaEspera(gestionListas.getListaVuelos(), gestionListas.getListaPasajerosPerm());
             break;
         
             default:
@@ -137,13 +143,13 @@ public class Menu {
     public void subMenuListaEspera(){
         System.out.println("******************LISTA DE ESPERA***********");
         System.out.println("----LISTA PASAJEROS----");
-        almacen.imprimirListaEspera();
-        System.out.println("----LISTA DE VUELOS DISPONIBLES----");
-        almacen.imprimirVuelos();
+        gestionListas.quitarPasajerosListaEspera();
+        gestionListas.imprimirListaEspera();
+        System.out.println("----LISTA DE VUELOS----");
+        gestionListas.imprimirVuelos();
         System.out.println("\n");
-        System.out.println("1)Atender Lista de espera\n2) Dar Salida al avion\n3) Salir");
+        System.out.println("1)Atender Lista de espera\n2) Dar Salida al avion\n3) Detalle Vuelos Despegados\n4) Salir");
         
-
     }
     
 

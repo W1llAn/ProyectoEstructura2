@@ -7,6 +7,7 @@ public class Pasajero {
     private String direccion;
     private int telefono;
     private String destinoViaja;
+    private String estado;
 
     public Pasajero() {
     }
@@ -68,5 +69,11 @@ public class Pasajero {
     public void setDestinoViaja(String destinoViaja) {
         this.destinoViaja = destinoViaja;
     }
-    
+    public String getEstado() {
+        return this.estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 }

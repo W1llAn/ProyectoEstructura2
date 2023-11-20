@@ -3,9 +3,9 @@ package listaaeropuerto;
 import java.util.ArrayList;
 
 
-public class Almacen {
+public class GestionDeListas {
     private ArrayList<Pasajero> listaEspera= new ArrayList<>();
-    private ArrayList <Vuelo> vuelos= new ArrayList<>();
+    private ArrayList <Vuelo> listaVuelos= new ArrayList<>();
     private ArrayList<Pasajero> listaPasajerosPermanentes= new ArrayList<>();
     
     public ArrayList<Pasajero> getlistaEspera() {
@@ -22,7 +22,7 @@ public class Almacen {
         this.getListaPasajerosPerm().add(listaPasajerosPermanentes);
     }
     public ArrayList<Vuelo> getListaVuelos() {
-        return vuelos;
+        return listaVuelos;
     }
      public void agregarAListaVuelo(Vuelo vuelos) {
         this.getListaVuelos().add(vuelos);
@@ -40,7 +40,7 @@ public class Almacen {
     public void imprimirListaEspera(){
         for(Pasajero listaespera : this.getlistaEspera()){
         System.out.println("Cedula: "+listaespera.getCedula()+ ":  "+
-                            listaespera.getNombres()+" "+listaespera.getApellidos());
+                            listaespera.getNombres()+" "+listaespera.getApellidos()+" Destino: "+listaespera.getDestinoViaja()+"  "+listaespera.getEstado());
         }
     }
 
@@ -49,5 +49,17 @@ public class Almacen {
             System.out.println("Empresa: "+listaVuelos.getNombreEmpresaAvion()+" Estado: "+ listaVuelos.getEstado());
         }
     }
+
+    public boolean quitarPasajerosListaEspera() {
+        boolean eliminado = false;
+        for (int i = this.getlistaEspera().size() - 1; i >= 0; i--) {
+            if (this.getlistaEspera().get(i).getEstado().equals("Asignado")) {
+                this.getlistaEspera().remove(i);
+                eliminado = true;
+            }
+        }
+        return eliminado;
+    }
+    
 
 }

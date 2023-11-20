@@ -12,7 +12,7 @@ public class Controles {
         }
     }
 
-    public String ControlCedula(String mensaje, Almacen almacen) {
+    public String ControlCedula(String mensaje, GestionDeListas almacen) {
         String cedula, patron;
         patron = "^[0-9]{10}$";
         boolean aux = false;
@@ -81,7 +81,7 @@ public class Controles {
         return cedula;
     }
 
-    public String controlDosPalbras(String mensaje) {
+    public String controlDosPalabras(String mensaje) {
         boolean control;
         String patron = "^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]+\\s[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]+$";
         String NombresApellidos;
@@ -116,6 +116,22 @@ public class Controles {
         } while (!(palabra.matches(patron)));
         return palabra.toUpperCase();
     }
+    public String PalabrasYVverificarAvion(String mensaje,GestionDeListas listaVuelos) {
+        boolean aux = false;
+        String patron, palabra;
+        patron = "^[a-zA-Z\\s]+$";
+        do {
+            System.out.print(mensaje);
+            palabra = tec.Tec().next();
+            if (!(this.verificarAvionExistente(palabra, listaVuelos))) {
+                if ((palabra.matches(patron))) {
+                    aux= true;
+            }
+            }
+            
+        } while (!aux);
+        return palabra.toUpperCase();
+    }
 
     public int ControlNumrs(String mensaje) {
         String patron, num;
@@ -130,7 +146,7 @@ public class Controles {
         return Integer.parseInt(num);
     }
 
-    public boolean verificarCedulaExistente(String cedula, Almacen almacen) {
+    public boolean verificarCedulaExistente(String cedula, GestionDeListas almacen) {
         for (int i = 0; i < almacen.getListaPasajerosPerm().size(); i++) {
             if (cedula.equals(almacen.getListaPasajerosPerm().get(i).getCedula())) {
                 return true;
@@ -138,7 +154,16 @@ public class Controles {
         }
         return false;
     }
+    public boolean verificarAvionExistente(String nombreAvion, GestionDeListas listaVuelos){
+        System.out.println("+++++++++++++++++++"+listaVuelos.getListaVuelos().size());
+        for (int i = 0; i < listaVuelos.getListaVuelos().size(); i++) {
+            if (nombreAvion.equals(listaVuelos.getListaVuelos().get(i).getNombreEmpresaAvion())) {
+                return true;
+            }
+        }
+        return false;
 
+    }
     public Date ingresoFechaVuelo() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         dateFormat.setLenient(false);
@@ -190,4 +215,14 @@ public class Controles {
         } while (!num.matches(patron) );
         return Integer.parseInt(num);
     }
+    public int controlarValorOpcion() {
+        String patron,opcion;
+        patron = "^[0-9]+$";
+        do {
+            System.out.print("Opcion: ");
+            opcion= tec.Tec().next();
+        } while (!opcion.matches(patron) );
+        return Integer.parseInt(opcion);
+    }
+
 }
