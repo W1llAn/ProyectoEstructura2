@@ -14,14 +14,17 @@ public class Menu {
             op = control.controlarValorOpcion();
             switch (op) {
                 case 1:
+                control.espacios();
                     do {
                         subMenuRegistros();
                         op = control.controlarValorOpcion();
                         switch (op) {
                             case 1:
+                            control.espacios();
                                 registroListaEsperaPasajeros();
                                 break;
                             case 2:
+                            control.espacios();
                                 crearVuelos();
                                 break;
                             default:
@@ -60,8 +63,10 @@ public class Menu {
                                 break;
                         }
                     } while (opcion2 != 4);
+                    control.espacios();
                     break;
                 case 3:
+                control.espacios();
                     System.out.println("Reportes");
                     System.out.println("1) Lista de pasajeros por vuelo\n2) Estadistica Destinos Concurridos\n3) Estadisticas de destinos en lista de espera");
                      op = control.controlarValorOpcion();
@@ -113,7 +118,7 @@ public class Menu {
         Date fecha = control.ingresoFechaVuelo();
         String horaSalida = control.pedirHoraYMinutos();
         int cantidadAsientosNoReservados = control.contolNumerosAsientosDisponibles("Cantidad de espacios no reservados: ");
-        System.out.println("*****Registro de vuelo exitoso*****");
+        System.out.println("\n*****Registro de vuelo exitoso*****\n");
         Vuelo vuelo = new Vuelo(compania.toUpperCase(),destino.toUpperCase(), fecha, horaSalida, cantidadAsientosNoReservados,"Disponible");
         gestionListas.agregarAListaVuelo(vuelo);
         gestionVuelos = vuelo; 
