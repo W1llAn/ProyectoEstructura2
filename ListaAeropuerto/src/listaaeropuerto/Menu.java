@@ -63,8 +63,7 @@ public class Menu {
                     break;
                 case 3:
                     System.out.println("Reportes");
-                    System.out.println("1) Lista de pasajeros por vuelo\n2) Cantidad de personas por destino\n 3) Estadisticas de cantidad de personas por destino");
-                    System.out.print("Opcion: ");
+                    System.out.println("1) Lista de pasajeros por vuelo\n2) Estadistica Destinos Concurridos\n3) Estadisticas de destinos en lista de espera");
                      op = control.controlarValorOpcion();
                      this.OpcionesReportes(op);
                     break;
@@ -126,13 +125,13 @@ public class Menu {
         Reportes reportes = new Reportes();
         switch (op) {
             case 1:
-                reportes.listaPasajerosVuelo(gestionListas.getlistaEspera(), gestionListas.getListaVuelos());
+                reportes.imprimirlistaPasajerosVuelo(gestionListas.getListaPasajerosPerm(), gestionListas.getListaVuelos());
             break;
             case 2:
-                reportes.cantPersonasDestinos(gestionListas.getListaPasajerosPerm(), gestionListas.getListaVuelos());
+                reportes.estadisticaCantPersonasDestinos(gestionListas.getListaPasajerosPerm(), gestionListas.getListaVuelos());
             break;
             case 3:
-                reportes.cantPersonasDestinosListaEspera(gestionListas.getListaVuelos(), gestionListas.getListaPasajerosPerm());
+                reportes.estadisticaCantPersonasDestinosListaEspera(gestionListas.getListaVuelos(), gestionListas.getlistaEspera());
             break;
         
             default:

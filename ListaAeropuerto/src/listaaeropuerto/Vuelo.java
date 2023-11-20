@@ -43,7 +43,19 @@ public class Vuelo {
 
     public int getCantidadAsientosNoReservados() {
         return this.cantidadAsientosNoReservados;
+    }
+    public int getCantidadAsientosReservados(){
+        int asientosReservados=0;
+        for (int i =0;i<this.totalAsientos.length;i++) {
+            if (this.totalAsientos[i].getPasajero()!=null) {
+                asientosReservados++;
+            }
+        }
+        return asientosReservados;
+    }
 
+    public Asientos[] getTotalAsientos(){
+        return this.totalAsientos;
     }
 
     public void setCantidadAsientosNoReservados(int cantidadAsientosNoReservados) {
@@ -86,7 +98,7 @@ public class Vuelo {
         boolean usuarioAtendido = false;
         for (Pasajero pasajero : pasajeros) {
             for (Vuelo vuelo : vuelos) {
-                if (pasajero.getDestinoViaja().toUpperCase().equals(vuelo.getDestino().toUpperCase())) {
+                if (pasajero.getDestinoViaja().toUpperCase().equals(vuelo.getDestino().toUpperCase())&&vuelo.getEstado().equals("Disponible")) {
                     usuarioAtendido = asignarAsientoPasajero(pasajero, vuelo, vuelos);
                 }
             }
@@ -111,6 +123,9 @@ public class Vuelo {
             pasajeros.setEstado("Asignado");
             this.imprimirDetallerAsientosPasajeros(pasajeros, vuelos);
             vuelos.contadorAsientos++;
+            if (vuelos.getCantidadAsientosNoReservados()==0) {
+                vuelos.setEstado("Lleno");
+            }
             return true;
         } else {
             return false;
@@ -161,7 +176,7 @@ public class Vuelo {
         }
 
         private void imprimirDetallePasajerosAvion(Pasajero pasajeros, Vuelo vuelos){
-             System.out.println("Pasajero: " + pasajeros.getNombres()+" "+ pasajeros.getApellidos()+"Volando con destino a: "+pasajeros.getDestinoViaja()
+             System.out.println("Pasajero: " + pasajeros.getNombres()+" "+ pasajeros.getApellidos()+" Volando con destino a: "+pasajeros.getDestinoViaja()
              + " En el vuelo de la empresa: "+ vuelos.getNombreEmpresaAvion());
         }
         

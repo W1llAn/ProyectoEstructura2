@@ -155,7 +155,6 @@ public class Controles {
         return false;
     }
     public boolean verificarAvionExistente(String nombreAvion, GestionDeListas listaVuelos){
-        System.out.println("+++++++++++++++++++"+listaVuelos.getListaVuelos().size());
         for (int i = 0; i < listaVuelos.getListaVuelos().size(); i++) {
             if (nombreAvion.equals(listaVuelos.getListaVuelos().get(i).getNombreEmpresaAvion())) {
                 return true;
