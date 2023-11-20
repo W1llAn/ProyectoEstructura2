@@ -106,7 +106,7 @@ public class Controles {
 
     public String Palabras(String opcion) {
         String patron, palabra;
-        patron = "^[a-zA-Z\\s]+$";
+        patron = "^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\\s]+$";
         do {
             System.out.print(opcion);
             palabra = tec.Tec().next();
@@ -119,7 +119,7 @@ public class Controles {
     public String PalabrasYVverificarAvion(String mensaje,GestionDeListas listaVuelos) {
         boolean aux = false;
         String patron, palabra;
-        patron = "^[a-zA-Z\\s]+$";
+        patron = "^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\\s]+$";
         do {
             System.out.print(mensaje);
             palabra = tec.Tec().next();
